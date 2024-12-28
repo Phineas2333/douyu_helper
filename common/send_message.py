@@ -12,11 +12,11 @@ def log_reader():
     return logs_str
 
 
-def send_message(send_key):
+def send_message(send_key,messagetxt):
     url = "https://sctapi.ftqq.com/{}.send".format(send_key)
     data = {
         "title": u"DouYu-Helper执行结果",
-        "desp": log_reader()
+        "desp": messagetxt
     }
     if data['desp']:
         try:
