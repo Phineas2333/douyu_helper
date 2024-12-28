@@ -27,6 +27,7 @@ def run():
                 for i in range(len(nums)):
                     glow_donate(nums[i], room_list[i])
                 logger.info("------荧光棒捐赠结束------")
+                messagetxt = "荧光棒捐赠结束"
                 get_need_exp()
             elif mode == 0:
                 logger.info("当前选择模式为:平均分配模式")
@@ -40,17 +41,21 @@ def run():
                     else:
                         glow_donate(every_give, room)
                 logger.info("------荧光棒捐赠结束------")
+                messagetxt = "荧光棒捐赠结束"
                 get_need_exp()
             else:
                 logger.warning("配置错误,没有这种选项,请修改配置并重新执行")
+                messagetxt = "配置错误,没有这种选项,请修改配置并重新执行"
         except Exception as e:
             logger.warning("背包中没有荧光棒,无法执行赠送,任务即将结束")
+            messagetxt = "背包中没有荧光棒,无法执行赠送"
             logger.debug(e)
     else:
         logger.warning("未登录状态无法进行后续操作,任务已结束")
+        messagetxt = "未登录状态无法进行后续操作"
     try:
         server_key = get_secrets("SERVERPUSHKEY")
-        send_message(server_key)
+        send_message(server_key, messagetxt)
     except Exception as e:
         logger.info("当前未配置Server酱推送，任务结束")
         logger.debug(e)
