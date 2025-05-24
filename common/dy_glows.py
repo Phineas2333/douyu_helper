@@ -113,6 +113,7 @@ def go_room():
         driver.add_cookie(mycookie)
     logger.info("刷新页面以完成登录")
     driver.refresh()
+    sleep(10)
     """
     WebDriverWait(driver, 30, 0.5).until(lambda drivers: drivers.find_element("xpath", "/html/body/section/header/div"
                                                                                        "/div/div[3]/div[7]/div"))
