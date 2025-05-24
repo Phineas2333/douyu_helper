@@ -113,17 +113,25 @@ def go_room():
         driver.add_cookie(mycookie)
     logger.info("刷新页面以完成登录")
     driver.refresh()
-"""
+    """
     WebDriverWait(driver, 30, 0.5).until(lambda drivers: drivers.find_element("xpath", "/html/body/section/header/div"
                                                                                        "/div/div[3]/div[7]/div"))
-"""
-    WebDriverWait(driver, 30, 0.5).until(lambda drivers: drivers.find_element("xpath", "//div[contains(@class, 'Header-login-wrap')]/div"))
-    a = driver.find_element("xpath", "//div[contains(@class, 'Header-login-wrap')]/div")
-    if "UserInfo" in a.get_attribute("class"):
-        logger.info("成功以登陆状态进入页面")
-        logger.info("如提示背包没有荧光棒请延长等待时间")
-    else:
-        logger.info("没有携带cookie进入页面,请重新检查cookie")
+    """
+    try:
+    # 定位到包含登录状态信息的元素
+        WebDriverWait(driver, 30, 0.5).until(
+            lambda drivers: drivers.find_element("xpath", "//div[contains(@class, 'Header-login-wrap')]/div")
+        )
+        login_status_element = driver.find_element("xpath", "//div[contains(@class, 'Header-login-wrap')]/div")
+
+        # 检查登录状态
+        if "UserInfo" in login_status_element.get_attribute("class"):
+            logger.info("成功以登陆状态进入页面")
+            logger.info("如提示背包没有荧光棒请延长等待时间")
+        else:
+            logger.info("没有携带cookie进入页面,请重新检查cookie")
+    except TimeoutException:
+        logger.error("超时未能找到目标元素")
     logger.info("再次刷新页面")
     driver.refresh()
     sleep(10)
