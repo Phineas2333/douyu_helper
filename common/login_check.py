@@ -35,7 +35,7 @@ def is_login():
         logger.warning("Notification Sent")
         Is_login = 0
 
-    return Is_login
+    return Is_login, exception_info
 
 
 if __name__ == '__main__':
