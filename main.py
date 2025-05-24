@@ -56,7 +56,7 @@ def run():
         else:
             messagetxt = "未登录状态无法进行后续操作, 请检查Cookie有效性"
         logger.warning(messagetxt)
-"""        
+     
     try:
 
         server_key = get_secrets("SERVERPUSHKEY")
@@ -66,7 +66,7 @@ def run():
     except Exception as e:
         logger.info("当前未配置Server酱推送，任务结束")
         logger.debug(e)
-"""
+
 
 if __name__ == '__main__':
     run()
