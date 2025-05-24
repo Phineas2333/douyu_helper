@@ -8,6 +8,7 @@ class DYHTTPRequests:
 
     def __init__(self):
         self.cookie = get_secrets('COOKIES')
+        self.cookie = re.sub(r'[\n\r\t ]', '', self.cookie)
         self.session = session()
         self.header = {
             "Content-Type": "application/x-www-form-urlencoded",
