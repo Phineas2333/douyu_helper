@@ -11,7 +11,7 @@ from common.send_message import send_message
 
 def run():
     logger.info("------登录检查开始------")
-    login_res = is_login()
+    login_res, login_exception_info = is_login()
     logger.info("------登录检查结束------")
     mode = int(conf.get_conf("Modechoose")['givemode'])
     if login_res:
@@ -51,12 +51,17 @@ def run():
             messagetxt = "背包中没有荧光棒, 无法执行赠送"
             logger.debug(e)
     else:
-        logger.warning("未登录状态无法进行后续操作,任务已结束")
-        messagetxt = "未登录状态无法进行后续操作, 请检查Cookie有效性"
+        if exception_info:
+            messagetxt = f"未登录状态无法进行后续操作, 请检查Cookie有效性。登录检查时发生异常: {login_exception_info}"
+        else:
+            messagetxt = "未登录状态无法进行后续操作, 请检查Cookie有效性"
+        logger.warning(messagetxt)
     try:
+"""
         server_key = get_secrets("SERVERPUSHKEY")
         if not (messagetxt == "荧光棒捐赠结束"):
             send_message(server_key, messagetxt)
+"""
     except Exception as e:
         logger.info("当前未配置Server酱推送，任务结束")
         logger.debug(e)
