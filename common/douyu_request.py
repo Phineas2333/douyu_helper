@@ -1,7 +1,7 @@
 # encoding:utf-8
 from requests.sessions import session
 from common.get_secrets import get_secrets
-
+import re
 
 # 重写请求方法,便于直接获取结果
 class DYHTTPRequests:
