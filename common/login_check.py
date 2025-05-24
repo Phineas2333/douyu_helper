@@ -14,6 +14,7 @@ def is_login():
     :return:返回登陆结果,用于主程序判断
     """
     global Is_login
+    exception_info = None
     try:
         login = dyreq.request("get", login_url).json()
         if login['error'] == 0:
@@ -27,6 +28,7 @@ def is_login():
                 requests.get(barkurl + "/斗鱼+Cookie+失效/登陆失败,请检查Cookie有效性")
             logger.warning("Notification Sent")
     except Exception as e:
+        exception_info = str(e)
         logger.error(f"登录检查时发生异常: {e}")
         logger.warning("登陆失败,请检查Cookie有效性")
         barkurl = get_secrets('BARKURL')
