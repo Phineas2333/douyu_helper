@@ -51,7 +51,7 @@ def run():
             messagetxt = "背包中没有荧光棒, 无法执行赠送"
             logger.debug(e)
     else:
-        if exception_info:
+        if login_exception_info:
             messagetxt = f"未登录状态无法进行后续操作, 请检查Cookie有效性。登录检查时发生异常: {login_exception_info}"
         else:
             messagetxt = "未登录状态无法进行后续操作, 请检查Cookie有效性"
