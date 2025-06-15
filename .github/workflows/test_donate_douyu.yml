@@ -1,11 +1,7 @@
 name: Test donate in 93589
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch: 
-  schedule:
 
 
 jobs:
