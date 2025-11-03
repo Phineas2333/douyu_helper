@@ -13,7 +13,7 @@ jobs:
       - name: 'Set up Python'
         uses: actions/setup-python@v1
         with:
-          python-version: 3.12.11
+          python-version: 3.12.12
       - name: 'Install requirements'
         run: pip install -r requirements.txt
       - name: 'Working'
@@ -22,5 +22,6 @@ jobs:
           BARKURL: ${{ secrets.BARKURL }}
         run: |
           python main.py
+
 
 
